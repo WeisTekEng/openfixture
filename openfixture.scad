@@ -73,9 +73,24 @@ tp_correction_offset_y = 0.0;
 
 // Uncomment for laser cuttable dxf
 //projection (cut = false) lasercut (); // Uncomment for exportable dxf to laser cut
-3d_model (); // Uncomment for full 3d rendering
+//3d_model (); // Uncomment for full 3d rendering
 //3d_head ();  // Uncomment for 3d head rendering
 //3d_base ();  // Uncomment for 3d base rendering 
+
+//testing
+//**BASE STUFF**
+//3d_base_Spacers(); //sides of base.
+//3d_base_hinge(); //Base Back side hinge.
+//3d_base_supports();
+//3d_base_bed_support();
+//3d_base_bed_carrier();
+//**END BASE STUFF**
+
+//**TOP BED STUFF**
+3d_head_base();
+//3d_head_side();
+//3d_head_top();
+//3d_front_back();
 
 //
 // End PCB input
@@ -590,6 +605,65 @@ module carrier (dxf_filename, pcb_x, pcb_y, border)
 //
 // 3D renderings of assembly
 //
+
+//support for 3d printing.
+module 3d_base_Spacers() //print twice.
+{
+    // Base sides
+    rotate ([0, -90, 0])
+    base_side ();
+
+    
+    // Add spacers
+    translate ([0, base_y - pivot_d, base_z + base_pivot_offset])
+    rotate ([0, 90, 0])
+    spacer ();
+}
+
+module 3d_base_hinge()
+{
+    base_back_support ();
+}
+    
+module 3d_base_supports()
+{
+    translate ([-mat_th, 2 * screw_d + mat_th, 2 * mat_th])
+    base_support (head_y / 3);
+}
+
+module 3d_base_bed_support()
+{
+    translate ([-mat_th, 0, base_z - (2 * mat_th)])
+    carrier (pcb_outline, pcb_x, pcb_y, pcb_support_border);
+}
+
+module 3d_base_bed_carrier()
+{
+    translate ([-mat_th, 0, base_z - mat_th])
+    carrier (pcb_outline, pcb_x, pcb_y, 0);
+}
+
+module 3d_head_base()
+{
+    head_top_offset = head_z - mat_th;
+    head_base ();
+}
+module 3d_head_side()
+{
+    head_top_offset = head_z - mat_th;
+    head_side ();
+}
+module 3d_head_top()
+{
+    head_top_offset = head_z - mat_th;
+    head_top ();
+}
+module 3d_front_back()
+{
+    head_top_offset = head_z - mat_th;
+    head_front_back ();
+}
+
 module 3d_head ()
 {
     head_top_offset = head_z - mat_th;
