@@ -77,7 +77,8 @@ tp_correction_offset_y = 0.0;
 //3d_head ();  // Uncomment for 3d head rendering
 //3d_base ();  // Uncomment for 3d base rendering 
 
-//testing
+//3D printing stuff. Export a piece at a time and import into your favorite
+//software generate Gcode and print. A plate option will be done later.
 //**BASE STUFF**
 //3d_base_Spacers(); //sides of base.
 //3d_base_hinge(); //Base Back side hinge.
@@ -87,14 +88,13 @@ tp_correction_offset_y = 0.0;
 //**END BASE STUFF**
 
 //**TOP BED STUFF**
-3d_head_base();
+//3d_head_base();
 //3d_head_side();
 //3d_head_top();
 //3d_front_back();
-
+//**END TOP BED STUFF**
 //
 // End PCB input
-//
 
 // Smothness function for circles
 $fn = 15;
