@@ -1,4 +1,4 @@
-# OpenFixture
+# OpenFixture Updated for 3d printing.
 
 ![Alt text](/../images/screencap.png?raw=true "")
 ![Alt text](/../images/laser_dxf.png?raw=true "")
